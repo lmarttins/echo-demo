@@ -3,20 +3,17 @@
 namespace App\Events;
 
 use Illuminate\Broadcasting\Channel;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use Illuminate\Support\Facades\Event;
+use Illuminate\Queue\SerializesModels;
 use App;
 
-class ChatMessageWasReceived extends Event implements ShouldBroadcast
+class ChatMessageWasReceived implements ShouldBroadcast
 {
     use InteractsWithSockets, SerializesModels;
 
-    private $chatMessage;
-    private $user;
+    public $chatMessage;
+    public $user;
 
     /**
      * ChatMessageWasReceived constructor.
@@ -37,6 +34,6 @@ class ChatMessageWasReceived extends Event implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return ['chat-room.1'];
+        return ['my-channel'];
     }
 }
